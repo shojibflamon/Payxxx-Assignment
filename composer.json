@@ -1,0 +1,19 @@
+{
+    "name": "shojibflamon/paysera-assignment",
+    "description": "Pasera Assignment - PHP",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shojibflamon\\PayseraAssignment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jahidul Islam",
+            "email": "shojib.seu@gmail.com"
+        }
+    ]
+}
