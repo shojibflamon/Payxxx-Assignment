@@ -3,8 +3,9 @@
 namespace Shojibflamon\PayseraAssignment\Provider;
 
 use Shojibflamon\PayseraAssignment\Client\CurlClient;
+use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
 
-class PayseraServiceProvider
+class PayseraServiceProvider implements ExchangeRateServiceProviderInterface
 {
     const PAYSERA_EXCHAGNE_RATE = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
 
@@ -15,17 +16,17 @@ class PayseraServiceProvider
         $this->client = new CurlClient();
     }
 
-    public function getExchageRate($sourceCurrency, $targetCurrency) : PaymentServiceResponse
+    public function getExchangeRate(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency) : ExchangeRateServiceResponse
     {
         // SAME CURRENCY
         if ($sourceCurrency->getCode() === $targetCurrency->getCode()) {
-            return new PaymentServiceResponse($sourceCurrency, $targetCurrency, 1);
+            return new ExchangeRateServiceResponse($sourceCurrency, $targetCurrency, 1);
         }
 
         // INVERSE CURRENCY
         if ('EUR' === $targetCurrency->getCode()) {
-            $revertExchangeRate = $this->getExchageRate($targetCurrency, $sourceCurrency);
-            return new PaymentServiceResponse($sourceCurrency, $targetCurrency, 1 / $revertExchangeRate->getRatio());
+            $revertExchangeRate = $this->getExchangeRate($targetCurrency, $sourceCurrency);
+            return new ExchangeRateServiceResponse($sourceCurrency, $targetCurrency, 1 / $revertExchangeRate->getRatio());
         }
 
         $exchangeRateResponse = $this->client->setUrl(self::PAYSERA_EXCHAGNE_RATE)->setMethod('GET')->callApi()->getResponseDecode(true);
@@ -34,7 +35,7 @@ class PayseraServiceProvider
 
         if ($exchangeRateResponse['date'] === $dateString) {
             $exchangeRates = $exchangeRateResponse['rates'];
-            return new PaymentServiceResponse($sourceCurrency, $targetCurrency, $exchangeRates[$targetCurrency->getCode()]);
+            return new ExchangeRateServiceResponse($sourceCurrency, $targetCurrency, $exchangeRates[$targetCurrency->getCode()]);
         }
     }
 }
