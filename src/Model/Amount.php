@@ -7,17 +7,48 @@ use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
 
 class Amount
 {
-    private $amount;
-    private Currency $operationCurrency;
-    private Currency $baseCurrency;
-    private $exchangeRate;
-    private $currencyConverter;
+    /**
+     * @var float
+     */
+    private float $amount;
 
+    /**
+     * @var Currency
+     */
+    private Currency $operationCurrency;
+
+    /**
+     * @var Currency
+     */
+    private Currency $baseCurrency;
+
+    /**
+     * @var
+     */
+    private $exchangeRate;
+
+     /**
+     * @var
+     */
+    private $exchangeRateSource;
+
+    /**
+     * @var CurrencyConverter
+     */
+    private CurrencyConverter $currencyConverter;
+
+    public CONST EXCHANGE_RATE_API_SOURCE = 'static'; // live|static
+
+    /**
+     * @param $amount
+     * @param $operationCurrency
+     */
     public function __construct($amount, $operationCurrency)
     {
         $this->amount = $amount;
         $this->operationCurrency = new Currency($operationCurrency);
         $this->baseCurrency = new Currency('EUR');
+        $this->exchangeRateSource = self::EXCHANGE_RATE_API_SOURCE;
         $this->getExchangeRate();
 
         $this->currencyConverter = new CurrencyConverter($this->exchangeRate);
@@ -26,7 +57,7 @@ class Amount
     /**
      * @return mixed
      */
-    public function getAmount()
+    public function getAmount(): float
     {
         return $this->amount;
     }
@@ -47,11 +78,13 @@ class Amount
         return $this->baseCurrency;
     }
 
-
-    public function getExchangeRate()
+    /**
+     * @return void
+     */
+    public function getExchangeRate(): void
     {
         $this->exchangeRate = (new PayseraExchangeRateServiceProvider())
-            ->setExchangeRateSource('static')
+            ->setExchangeRateSource($this->exchangeRateSource)
             ->getExchangeRate($this->operationCurrency, $this->baseCurrency);
     }
 
@@ -61,13 +94,13 @@ class Amount
     public function getCurrencyConverter(): CurrencyConverter
     {
         return $this->currencyConverter = new CurrencyConverter($this->exchangeRate);
-//        return $this->currencyConverter;
     }
 
-
-
-
-
+    /**
+     * @param $value
+     * @param int $decimal
+     * @return string
+     */
     public function ceiling($value, int $decimal = 0): string
     {
         $offset = 0.5;
@@ -78,6 +111,4 @@ class Amount
         $final = round($value + $offset, $decimal, PHP_ROUND_HALF_DOWN);
         return number_format($final, $decimal, '.', '');
     }
-
-
 }

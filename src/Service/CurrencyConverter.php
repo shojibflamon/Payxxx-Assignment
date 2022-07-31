@@ -39,13 +39,12 @@ class CurrencyConverter implements CurrencyConverterInterface
         return isset($this->exchangeRates[$sourceCurrencyCode][$targetCurrencyCode]);
     }
 
-
     public function convert(float $amount, CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency): float
     {
         $ratio = $this->getExchangeRate($sourceCurrency->getCode(), $targetCurrency->getCode());
 
         if (NULL === $ratio) {
-            throw new ExchangeRateNotFoundException($sourceCurrency, $targetCurrency, sprintf("No exchange rate registered for converting %s to %s", $sourceCurrency->getCode(), $targetCurrency->getCode()));
+            throw new \RuntimeException(sprintf("No exchange rate registered for converting %s to %s", $sourceCurrency->getCode(), $targetCurrency->getCode()));
         }
 
         return $amount * $ratio;

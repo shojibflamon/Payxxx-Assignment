@@ -4,8 +4,8 @@ namespace Shojibflamon\PayseraAssignment\Model;
 
 class User
 {
-    const USER_TYPE_PRIVATE = 'private';
-    const USER_TYPE_BUSINESS = 'business';
+    public const USER_TYPE_PRIVATE = 'private';
+    public const USER_TYPE_BUSINESS = 'business';
 
     private string $userId;
     private string $userType;
@@ -31,7 +31,5 @@ class User
     {
         return $this->userType;
     }
-
-
 
 }

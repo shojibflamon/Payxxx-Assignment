@@ -4,10 +4,29 @@ namespace Shojibflamon\PayseraAssignment\Client;
 
 class CurlClient implements ClientInterface
 {
+    /**
+     * @var string
+     */
     private string $url;
+
+    /**
+     * @var string
+     */
     private string $method;
+
+    /**
+     * @var array
+     */
     private array $data;
+
+    /**
+     * @var array
+     */
     private array $header;
+
+    /**
+     * @var int
+     */
     private int $timeout;
 
     /**

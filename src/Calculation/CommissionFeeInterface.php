@@ -4,5 +4,5 @@ namespace Shojibflamon\PayseraAssignment\Calculation;
 
 interface CommissionFeeInterface
 {
-    public function calculate(Transaction $transaction);
+    public function calculate(TransactionInterface $transaction);
 }

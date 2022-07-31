@@ -53,9 +53,12 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
             throw new \RuntimeException("Unexpected ExchangeRate Source $this->exchangeRateSource");
         }
 
-        if ($exchangeRateResponse['date'] === $this->date) {
+        if ($exchangeRateResponse['date'] === $this->date && isset($exchangeRateResponse['rates'][$targetCurrency->getCode()])) {
             return new ExchangeRateServiceResponse($sourceCurrency, $targetCurrency, $exchangeRateResponse['rates'][$targetCurrency->getCode()]);
         }
+
+        throw new \RuntimeException(sprintf("No exchange rate registered for converting %s to %s", $sourceCurrency->getCode(), $targetCurrency->getCode()));
+
     }
 
     public function getExchangeRateStatic(): array

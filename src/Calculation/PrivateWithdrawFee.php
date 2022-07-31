@@ -4,11 +4,13 @@ namespace Shojibflamon\PayseraAssignment\Calculation;
 
 use Shojibflamon\PayseraAssignment\Helper\Dump;
 
-class PrivateWithdraw implements CommissionFeeInterface
+class PrivateWithdrawFee implements CommissionFeeInterface
 {
     use Dump;
 
     public const OPERATION_TYPE_PRIVATE_WITHDRAW_RATE = 0.3;
+    public const WITHDRAW_LIMIT_IN_WEEK = 3;
+    public const CREDIT_LIMIT_IN_WEEK = 1000;
 
     private int $withdrawLimit;
     private float $creditLimit;
@@ -16,16 +18,15 @@ class PrivateWithdraw implements CommissionFeeInterface
 
     public function __construct()
     {
-        $this->withdrawLimit = 3;
-        $this->creditLimit = 1000;
+        $this->withdrawLimit = self::WITHDRAW_LIMIT_IN_WEEK;
+        $this->creditLimit = self::CREDIT_LIMIT_IN_WEEK;
         $this->arrayDb = [];
     }
 
-    public function calculate(Transaction $transaction ) :float
+    public function calculate(TransactionInterface $transaction): float
     {
         $this->resetCredentials();
 
-//        self::dd($transaction);
         $operationAmount = $transaction->getAmount()->getAmount();
         $operationCurrency = $transaction->getAmount()->getOperationCurrency();
         $baseCurrency = $transaction->getAmount()->getBaseCurrency();
@@ -36,14 +37,12 @@ class PrivateWithdraw implements CommissionFeeInterface
 
         $userId = $transaction->getUser()->getUserId();
 
-//        self::dd($this->arrayDb);
-
         if (array_key_exists($userId, $this->arrayDb) && array_key_exists($weekStartDate, $this->arrayDb[$userId])) {
             $lastTransaction = $this->arrayDb[$userId][$weekStartDate];
             $this->creditLimit = $lastTransaction['creditLimit'];
             $this->withdrawLimit = $lastTransaction['withdrawLimit'];
         }
-        self::dd($this->creditLimit);
+
         if ($amountInEuro < $this->creditLimit) {
             $exceededAmount = $commissionableAmount = 0;
             $this->creditLimit -= $amountInEuro;
@@ -60,9 +59,8 @@ class PrivateWithdraw implements CommissionFeeInterface
             'creditLimit' => $this->creditLimit,
             'withdrawLimit' => $this->withdrawLimit,
         ];
-//self::dd($this->arrayDb[$userId]);
 
-        if ($transaction->getCurrency()->getCode() !== 'EUR') {
+        if ($transaction->getAmount()->getOperationCurrency()->getCode() !== 'EUR') {
             $commissionableAmount = $transaction->getAmount()->getCurrencyConverter()->convert($commissionableAmount, $baseCurrency, $operationCurrency);
         }
 
@@ -71,9 +69,8 @@ class PrivateWithdraw implements CommissionFeeInterface
 
     private function resetCredentials(): void
     {
-        $this->commissionFee = 0;
-        $this->withdrawLimit = 3;
-        $this->creditLimit = 1000;
+        $this->withdrawLimit = self::WITHDRAW_LIMIT_IN_WEEK;
+        $this->creditLimit = self::CREDIT_LIMIT_IN_WEEK;
     }
 
     private function decreaseWithdrawLimit(): void

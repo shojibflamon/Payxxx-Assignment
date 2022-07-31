@@ -4,12 +4,12 @@ namespace Shojibflamon\PayseraAssignment\Calculation;
 
 use Shojibflamon\PayseraAssignment\Helper\Dump;
 
-class Deposit implements CommissionFeeInterface
+class DepositFee implements CommissionFeeInterface
 {
     use Dump;
     public const OPERATION_TYPE_DEPOSIT_RATE = 0.03;
 
-    public function calculate(Transaction $transaction ) :float
+    public function calculate(TransactionInterface $transaction) :float
     {
         $operationAmount = $transaction->getAmount()->getAmount();
         $operationCurrency = $transaction->getAmount()->getOperationCurrency();

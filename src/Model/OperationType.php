@@ -4,8 +4,8 @@ namespace Shojibflamon\PayseraAssignment\Model;
 
 class OperationType
 {
-    const OPERATION_TYPE_WITHDRAW = 'withdraw';
-    const OPERATION_TYPE_DEPOSIT = 'deposit';
+    public const OPERATION_TYPE_WITHDRAW = 'withdraw';
+    public const OPERATION_TYPE_DEPOSIT = 'deposit';
 
     private $operationType;
 
@@ -21,7 +21,4 @@ class OperationType
     {
         return $this->operationType;
     }
-
-
-
 }
