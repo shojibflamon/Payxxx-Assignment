@@ -2,7 +2,7 @@
 
 namespace Shojibflamon\PayseraAssignment\Model;
 
-class Currency
+class Currency implements CurrencyInterface
 {
     /**
      * @var string

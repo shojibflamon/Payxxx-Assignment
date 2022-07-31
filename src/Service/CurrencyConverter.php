@@ -2,21 +2,21 @@
 
 namespace Shojibflamon\PayseraAssignment\Service;
 
-use Shojibflamon\PayseraAssignment\Model\Currency;
-use Shojibflamon\PayseraAssignment\Provider\PaymentServiceResponse;
+use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
+use Shojibflamon\PayseraAssignment\Provider\ExchangeRateServiceResponse;
 
-class CurrencyConverter
+class CurrencyConverter implements CurrencyConverterInterface
 {
-    private $exchangeRates = [];
+    private array $exchangeRates = [];
 
-    public function __construct(PaymentServiceResponse ...$exchangeRates)
+    public function __construct(ExchangeRateServiceResponse ...$exchangeRates)
     {
         foreach ($exchangeRates as $exchangeRate) {
             $this->registerExchangeRate($exchangeRate);
         }
     }
 
-    private function registerExchangeRate(PaymentServiceResponse $exchangeRate): void
+    private function registerExchangeRate(ExchangeRateServiceResponse $exchangeRate): void
     {
         $source = $exchangeRate->getSourceCurrency()->getCode();
         $target = $exchangeRate->getTargetCurrency()->getCode();
@@ -40,7 +40,7 @@ class CurrencyConverter
     }
 
 
-    public function convert(float $amount, Currency $sourceCurrency, Currency $targetCurrency): float
+    public function convert(float $amount, CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency): float
     {
         $ratio = $this->getExchangeRate($sourceCurrency->getCode(), $targetCurrency->getCode());
 

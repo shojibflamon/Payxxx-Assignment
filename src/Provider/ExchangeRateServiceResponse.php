@@ -2,16 +2,27 @@
 
 namespace Shojibflamon\PayseraAssignment\Provider;
 
-use Shojibflamon\PayseraAssignment\Model\Currency;
+use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
 
-Class PaymentServiceResponse
+Class ExchangeRateServiceResponse implements ExchangeRateServiceResponseInterface
 {
 
-    private Currency $sourceCurrency;
-    private Currency $targetCurrency;
+    /**
+     * @var CurrencyInterface
+     */
+    private CurrencyInterface $sourceCurrency;
+
+    /**
+     * @var CurrencyInterface
+     */
+    private CurrencyInterface $targetCurrency;
+
+    /**
+     * @var float
+     */
     private float $ratio;
 
-    public function __construct(Currency $sourceCurrency, Currency $targetCurrency, float $ratio)
+    public function __construct(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency, float $ratio)
     {
         $this->sourceCurrency = $sourceCurrency;
         $this->targetCurrency = $targetCurrency;
@@ -19,25 +30,25 @@ Class PaymentServiceResponse
     }
 
     /**
-     * @return mixed
+     * @return CurrencyInterface
      */
-    public function getSourceCurrency()
+    public function getSourceCurrency(): CurrencyInterface
     {
         return $this->sourceCurrency;
     }
 
     /**
-     * @return mixed
+     * @return CurrencyInterface
      */
-    public function getTargetCurrency()
+    public function getTargetCurrency(): CurrencyInterface
     {
         return $this->targetCurrency;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getRatio()
+    public function getRatio(): float
     {
         return $this->ratio;
     }

@@ -2,7 +2,7 @@
 
 namespace Shojibflamon\PayseraAssignment\Helper;
 
-Class Dump
+trait Dump
 {
     public static function ddd($data)
     {

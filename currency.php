@@ -14,14 +14,19 @@ use Shojibflamon\PayseraAssignment\Service\CalculateFee;
 use Shojibflamon\PayseraAssignment\Service\CsvFileProcess;
 use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
 
-$file = 'input.csv';
-$processFile = new CsvFileProcess($file);
-//Dump::dd($processFile);die();
-$transaction = $processFile->convertObject();
+$eur = new Currency('EUR');
+$usd = new Currency('USD');
 
-$calculateCommission = new CalculateCommission($transaction);
-$fees = $calculateCommission->process();
+//$eur = new CurrencyPrecision('EUR',2);
+//$usd = new CurrencyPrecision('USD',2);
 
-echo 'asdf';
-Dump::ddd($fees);die();
+$payseraServiceProvider = new PayseraExchangeRateServiceProvider();
+$exchangeRate = $payseraServiceProvider->setExchangeRateSource('static')->getExchangeRate($usd, $eur);
+Dump::ddd($exchangeRate);
 
+$currencyConverter = new CurrencyConverter($exchangeRate);
+//Dump::ddd($currencyConverter);
+
+$ra = $currencyConverter->convert(10, $usd, $eur);
+
+Dump::ddd($ra);

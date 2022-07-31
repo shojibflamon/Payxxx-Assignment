@@ -2,7 +2,7 @@
 
 namespace Shojibflamon\PayseraAssignment\Client;
 
-class CurlClient
+class CurlClient implements ClientInterface
 {
     private string $url;
     private string $method;
