@@ -2,6 +2,7 @@
 
 namespace Shojibflamon\PayseraAssignment\Service;
 
+use Invalid;
 use Shojibflamon\PayseraAssignment\Calculation\Transaction;
 use Shojibflamon\PayseraAssignment\Helper\Dump;
 use Shojibflamon\PayseraAssignment\Model\Amount;
@@ -9,10 +10,11 @@ use Shojibflamon\PayseraAssignment\Model\DateOperation;
 use Shojibflamon\PayseraAssignment\Model\OperationType;
 use Shojibflamon\PayseraAssignment\Model\User;
 
-class CsvFileProcess implements FileProcessInterface
+class CsvFileProcessNew implements FileProcessInterface
 {
 
     use Dump;
+
     /**
      * @var array
      */
@@ -21,26 +23,37 @@ class CsvFileProcess implements FileProcessInterface
     /**
      * @var array
      */
-    public array $transactions;
+    private array $transactions;
+    public $fileData;
+
+
 
     /**
      * @param $file
      */
-    public function __construct($file)
+    public function __construct(FileData $fileData)
     {
-        $this->file = $file;
-        $this->data = [];
+        $this->fileData = $fileData;
+//        $this->data = [];
         $this->transactions = [];
         $this->processFile();
     }
+
+
+    /**
+     * @return array
+     */
+    public function getTransactions(): array
+    {
+        return $this->transactions;
+    }
+
 
     /**
      * @return array
      */
     public function processFile(): array
     {
-        $this->data = file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-//        self::dd($this->data);
         return $this->parseStringFromCsv();
     }
 
@@ -49,19 +62,24 @@ class CsvFileProcess implements FileProcessInterface
      */
     public function parseStringFromCsv(): array
     {
-        return $this->transactions = array_map('str_getcsv', $this->data);
+        return $this->transactions = array_map('str_getcsv', $this->fileData->getData()[0]);
     }
 
     /**
      * @return $this
      */
-    public function convertObject(): CsvFileProcess
+    public function convertObject(): CsvFileProcessNew
     {
         foreach ($this->transactions as $key => $transaction) {
+
+//            if ($key != 0){
+//                continue;
+//            }
 
             $date = $this->bindDate($transaction[0]);
             $user = $this->bindUser($transaction[1], $transaction[2]);
             $operationType = $this->bindOperationType($transaction[3]);
+
             $amount = $this->bindAmount($transaction[4], $transaction[5]);
 
             $this->transactions[$key] = new Transaction($date, $user, $operationType, $amount);
@@ -99,12 +117,14 @@ class CsvFileProcess implements FileProcessInterface
     }
 
     /**
-     * @param $user
+     * @param $date
      * @return DateOperation
      */
-    public function bindDate($user): DateOperation
+    public function bindDate($date): DateOperation
     {
-        return new DateOperation($user);
+        return new DateOperation($date);
     }
+
+
 
 }

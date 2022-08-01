@@ -18,6 +18,7 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
     {
         $this->client = $client ?? new CurlClient();
         $this->date = date('Y-m-d');
+        $this->exchangeRateSource = 'static';
     }
 
     /**
@@ -28,7 +29,6 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
         $this->exchangeRateSource = $exchangeRateSource;
         return $this;
     }
-
 
     public function getExchangeRate(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency): ExchangeRateServiceResponse
     {

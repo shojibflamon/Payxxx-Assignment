@@ -27,7 +27,7 @@ class CalculateCommission implements CalculateCommissionInterface
         $this->precision = 2;
 
         $this->commissionFees = [];
-        $this->transactions = $fileProcess->transactions;
+        $this->transactions = $fileProcess->getTransactions();
         $this->depositFee = new DepositFee();
         $this->businessWithdrawFee = new BusinessWithdrawFee();
         $this->privateWithdrawFee = new PrivateWithdrawFee();
@@ -36,8 +36,12 @@ class CalculateCommission implements CalculateCommissionInterface
 
     public function process(): array
     {
-        foreach ($this->transactions as $transaction) {
+        foreach ($this->transactions as $key=> $transaction) {
 
+            /*if ($key != 0) {
+                continue;
+            }
+            */
             if ($this->isDepositAction($transaction)) {
                 $this->commissionFee = $this->depositFee->calculate($transaction);
             }

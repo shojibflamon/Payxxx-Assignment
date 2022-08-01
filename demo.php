@@ -10,9 +10,11 @@ use Shojibflamon\PayseraAssignment\Service\CsvFileProcess;
 
 $file = 'input.csv';
 $processFile = new CsvFileProcess($file);
+Dump::dd($processFile);
 $transaction = $processFile->convertObject();
+Dump::ddd($transaction);
 $calculateCommission = new CalculateCommission($transaction);
+//Dump::dd($calculateCommission);
 $fees = $calculateCommission->process();
-
-Dump::ddd($fees);die();
+Dump::ddd($fees);
 
