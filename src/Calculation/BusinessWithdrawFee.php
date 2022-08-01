@@ -3,13 +3,19 @@
 namespace Shojibflamon\PayseraAssignment\Calculation;
 
 use Shojibflamon\PayseraAssignment\Helper\Dump;
+use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
 
 class BusinessWithdrawFee implements CommissionFeeInterface
 {
     use Dump;
+
     public const OPERATION_TYPE_BUSINESS_WITHDRAW_RATE = 0.5;
 
-    public function calculate(TransactionInterface $transaction ) :float
+    /**
+     * @param TransactionInterface $transaction
+     * @return float
+     */
+    public function calculate(TransactionInterface $transaction): float
     {
         $operationAmount = $transaction->getAmount()->getAmount();
         $operationCurrency = $transaction->getAmount()->getOperationCurrency();

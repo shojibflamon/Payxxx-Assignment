@@ -5,23 +5,52 @@ namespace Shojibflamon\PayseraAssignment\Calculation;
 use Shojibflamon\PayseraAssignment\Helper\Dump;
 use Shojibflamon\PayseraAssignment\Model\OperationType;
 use Shojibflamon\PayseraAssignment\Model\User;
-use Shojibflamon\PayseraAssignment\Service\FileProcessInterface;
+use Shojibflamon\PayseraAssignment\Service\TransactionFactoryInterface;
 
 class CalculateCommission implements CalculateCommissionInterface
 {
     use Dump;
 
+    /**
+     * @var array
+     */
     private array $commissionFees;
+
+    /**
+     * @var array
+     */
     private array $transactions;
+
+    /**
+     * @var float
+     */
     private $commissionFee;
 
+    /**
+     * @var DepositFee
+     */
     private DepositFee $depositFee;
+
+    /**
+     * @var BusinessWithdrawFee
+     */
     private BusinessWithdrawFee $businessWithdrawFee;
+
+    /**
+     * @var PrivateWithdrawFee
+     */
     private PrivateWithdrawFee $privateWithdrawFee;
+
+    /**
+     * @var int
+     */
     private int $precision;
 
 
-    public function __construct(FileProcessInterface $fileProcess)
+    /**
+     * @param TransactionFactoryInterface $fileProcess
+     */
+    public function __construct(TransactionFactoryInterface $fileProcess)
     {
         $this->commissionFee = 0;
         $this->precision = 2;
@@ -31,12 +60,14 @@ class CalculateCommission implements CalculateCommissionInterface
         $this->depositFee = new DepositFee();
         $this->businessWithdrawFee = new BusinessWithdrawFee();
         $this->privateWithdrawFee = new PrivateWithdrawFee();
-
     }
 
+    /**
+     * @return array
+     */
     public function process(): array
     {
-        foreach ($this->transactions as $key=> $transaction) {
+        foreach ($this->transactions as $key => $transaction) {
 
             /*if ($key != 0) {
                 continue;
@@ -69,17 +100,29 @@ class CalculateCommission implements CalculateCommissionInterface
         return $this->commissionFees;
     }
 
+    /**
+     * @param $transaction
+     * @return bool
+     */
     private function isDepositAction($transaction): bool
     {
         return $transaction->getOperationType()->getOperationType() === OperationType::OPERATION_TYPE_DEPOSIT;
     }
 
+    /**
+     * @param $transaction
+     * @return bool
+     */
     private function isBusinessWithdrawAction($transaction): bool
     {
         return $transaction->getOperationType()->getOperationType() === OperationType::OPERATION_TYPE_WITHDRAW &&
             $transaction->getUser()->getUserType() === User::USER_TYPE_BUSINESS;
     }
 
+    /**
+     * @param $transaction
+     * @return bool
+     */
     private function isPrivateWithdrawAction($transaction): bool
     {
         return $transaction->getOperationType()->getOperationType() === OperationType::OPERATION_TYPE_WITHDRAW &&

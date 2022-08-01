@@ -4,5 +4,8 @@ namespace Shojibflamon\PayseraAssignment\Service;
 
 interface FileProcessInterface
 {
-    public function processFile(): array;
+    /**
+     * @return TransactionFactory
+     */
+    public function transformation(): TransactionFactory;
 }

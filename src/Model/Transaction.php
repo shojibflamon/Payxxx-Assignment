@@ -1,19 +1,35 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Calculation;
-
-use Shojibflamon\PayseraAssignment\Model\Amount;
-use Shojibflamon\PayseraAssignment\Model\DateOperation;
-use Shojibflamon\PayseraAssignment\Model\OperationType;
-use Shojibflamon\PayseraAssignment\Model\User;
+namespace Shojibflamon\PayseraAssignment\Model;
 
 class Transaction implements TransactionInterface
 {
+    /**
+     * @var DateOperation
+     */
     private DateOperation $dateOperation;
+
+    /**
+     * @var User
+     */
     private User $user;
+
+    /**
+     * @var OperationType
+     */
     private OperationType $operationType;
+
+    /**
+     * @var Amount
+     */
     private Amount $amount;
 
+    /**
+     * @param DateOperation $dateOperation
+     * @param User $user
+     * @param OperationType $operationType
+     * @param Amount $amount
+     */
     public function __construct(
         DateOperation $dateOperation,
         User          $user,

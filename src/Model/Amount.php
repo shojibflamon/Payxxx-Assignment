@@ -7,6 +7,8 @@ use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
 
 class Amount
 {
+    public const EXCHANGE_RATE_API_SOURCE = 'static'; // live|static
+
     /**
      * @var float
      */
@@ -27,17 +29,16 @@ class Amount
      */
     private $exchangeRate;
 
-     /**
+    /**
      * @var
      */
-    private $exchangeRateSource;
+    private string $exchangeRateSource;
 
     /**
      * @var CurrencyConverter
      */
     private CurrencyConverter $currencyConverter;
 
-    public CONST EXCHANGE_RATE_API_SOURCE = 'static'; // live|static
 
     /**
      * @param $amount

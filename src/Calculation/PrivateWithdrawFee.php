@@ -3,17 +3,31 @@
 namespace Shojibflamon\PayseraAssignment\Calculation;
 
 use Shojibflamon\PayseraAssignment\Helper\Dump;
+use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
 
 class PrivateWithdrawFee implements CommissionFeeInterface
 {
     use Dump;
 
     public const OPERATION_TYPE_PRIVATE_WITHDRAW_RATE = 0.3;
+
     public const WITHDRAW_LIMIT_IN_WEEK = 3;
+
     public const CREDIT_LIMIT_IN_WEEK = 1000;
 
+    /**
+     * @var int
+     */
     private int $withdrawLimit;
+
+    /**
+     * @var float|int
+     */
     private float $creditLimit;
+
+    /**
+     * @var array
+     */
     private array $arrayDb;
 
     public function __construct()
@@ -23,6 +37,10 @@ class PrivateWithdrawFee implements CommissionFeeInterface
         $this->arrayDb = [];
     }
 
+    /**
+     * @param TransactionInterface $transaction
+     * @return float
+     */
     public function calculate(TransactionInterface $transaction): float
     {
         $this->resetCredentials();
@@ -67,12 +85,18 @@ class PrivateWithdrawFee implements CommissionFeeInterface
         return $commissionableAmount * self::OPERATION_TYPE_PRIVATE_WITHDRAW_RATE * .01;
     }
 
+    /**
+     * @return void
+     */
     private function resetCredentials(): void
     {
         $this->withdrawLimit = self::WITHDRAW_LIMIT_IN_WEEK;
         $this->creditLimit = self::CREDIT_LIMIT_IN_WEEK;
     }
 
+    /**
+     * @return void
+     */
     private function decreaseWithdrawLimit(): void
     {
         if ($this->withdrawLimit > 0) {

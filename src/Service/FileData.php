@@ -4,7 +4,14 @@ namespace Shojibflamon\PayseraAssignment\Service;
 
 class FileData
 {
-    private $data;
+    /**
+     * @var array
+     */
+    private array $data;
+
+    /**
+     * @param $data
+     */
     public function __construct($data)
     {
         $this->data[] = $data;
@@ -17,8 +24,4 @@ class FileData
     {
         return $this->data;
     }
-
-
-
-
 }

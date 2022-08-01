@@ -2,9 +2,6 @@
 
 namespace Shojibflamon\PayseraAssignment\Client;
 
-/**
- *
- */
 class Response
 {
     /**
@@ -64,7 +61,6 @@ class Response
     public function getResponseDecode($is_array = false)
     {
         return $is_array ? json_decode($this->response, $is_array) : json_decode($this->response);
-
     }
 
 }

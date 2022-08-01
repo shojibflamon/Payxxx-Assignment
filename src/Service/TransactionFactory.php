@@ -2,9 +2,9 @@
 
 namespace Shojibflamon\PayseraAssignment\Service;
 
-use Shojibflamon\PayseraAssignment\Calculation\TransactionInterface;
+use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
 
-class CsvFileProcessUpdate implements FileProcessInterface
+class TransactionFactory implements TransactionFactoryInterface
 {
     private array $transactions;
 
@@ -30,16 +30,10 @@ class CsvFileProcessUpdate implements FileProcessInterface
     }
 
     /**
-     * @param array $transactions
+     * @param TransactionInterface $transaction
      */
     public function pushTransaction(TransactionInterface $transaction): void
     {
         $this->transactions[] = $transaction;
-    }
-
-
-    public function processFile(): array
-    {
-        // TODO: Implement processFile() method.
     }
 }

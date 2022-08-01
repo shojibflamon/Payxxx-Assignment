@@ -7,7 +7,7 @@ class Currency implements CurrencyInterface
     /**
      * @var string
      */
-    private $code;
+    private string $code;
 
     /**
      * @param $code

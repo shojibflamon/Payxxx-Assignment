@@ -14,7 +14,7 @@ use Shojibflamon\PayseraAssignment\Model\User;
 use Shojibflamon\PayseraAssignment\Service\CsvFile;
 use Shojibflamon\PayseraAssignment\Service\CsvFileProcess;
 use Shojibflamon\PayseraAssignment\Service\CsvFileProcessNew;
-use Shojibflamon\PayseraAssignment\Service\CsvFileProcessUpdate;
+use Shojibflamon\PayseraAssignment\Service\TransactionFactory;
 use Shojibflamon\PayseraAssignment\Service\FileData;
 
 $input = [
@@ -23,70 +23,46 @@ $input = [
     '2016-01-05,4,private,withdraw,1000.00,EUR',
     '2016-01-05,1,private,deposit,200.00,EUR',
 ];
-
-//Dump::ddd(json_encode($input));
-//
-//$transactions = new FileData($input);
-////Dump::dd($transactions);
-//$processFile = new CsvFileProcessNew($transactions);
-//Dump::ddd($processFile);
+$file = 'input.csv';
 
 
-
-//$file = 'input.csv';
-//$csv = new CsvFile($file);
+$csv = new CsvFile($file);
 //Dump::dd($csv);
 
-//$transactions = $csv->getData();
-$transactions = new FileData($input);
 
-//Dump::dd($transactions);
 
-$processFile = new CsvFileProcessNew($transactions);
-//Dump::ddd($processFile);
+// Regular Case
+$transactions = $csv->getData();
+// Test Case
+//$transactions = new FileData($input);
+//Dump::ddd($transactions);
 
-$transaction = $processFile->convertObject();
-echo '################ $transaction = $processFile->convertObject();' . PHP_EOL;
-//Dump::dd($transaction);
-echo '################ $transaction = $processFile->convertObject();' . PHP_EOL;
+
+
+
+$processFile = new CsvFileProcess($transactions);
+
+
+// Regular Case
+$transaction = $processFile->parseStringFromCsv()->transformation();
+//Dump::ddd($transaction);
+// Test Case
+//$date = new DateOperation('2014-12-31');
+//$user = new User(2, 'business');
+//$amount = new Amount(10000, 'EUR');
+//$operationType = new OperationType('deposit');
+//
+//$transactionObj = new Transaction($date, $user, $operationType, $amount);
+//$transaction = new TransactionFactory();
+//$transaction->pushTransaction($transactionObj);
+
+//Dump::ddd($transaction);
+
+
+
+
 $calculateCommission = new CalculateCommission($transaction);
 //Dump::dd($transaction);
 $fees = $calculateCommission->process();
 
 Dump::ddd($fees);
-
-
-
-$date = new DateOperation('2014-12-31');
-$user = new User(4, 'private');
-$amount = new Amount(1200, 'EUR');
-$operationType = new OperationType('withdraw');
-
-$transaction1 = new Transaction($date, $user, $operationType, $amount);
-$abc = new CsvFileProcessUpdate();
-$abc->pushTransaction($transaction1);
-//$abc->setTransactions($transaction1);
-echo '################ $transaction1 = new Transaction($date, $user, $operationType, $amount);' . PHP_EOL;
-//Dump::ddd($abc);
-echo '################ $transaction1 = new Transaction($date, $user, $operationType, $amount);' . PHP_EOL;
-
-$calculateCommission = new CalculateCommission($abc);
-$fees = $calculateCommission->process();
-
-Dump::ddd($fees);
-
-
-/*
- * FileInterface
- *  CsvFile
- *  $csvFile = new CsvFile('input.csv')
- *  JsonFile
- *  $jsonFile = new CsvFile('input.json')
- *
- *
- *
- * */
-
-
-
-

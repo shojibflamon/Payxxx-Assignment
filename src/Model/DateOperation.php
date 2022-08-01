@@ -4,8 +4,14 @@ namespace Shojibflamon\PayseraAssignment\Model;
 
 class DateOperation
 {
+    /**
+     * @var
+     */
     private $date;
 
+    /**
+     * @param $date
+     */
     public function __construct($date)
     {
         $this->date = $date;
@@ -19,13 +25,11 @@ class DateOperation
         return $this->date;
     }
 
-
     /**
      * @return mixed
      */
     public function getFirstDayOfWeek()
     {
         return date('Y-m-d', strtotime("this week", strtotime($this->date)));
-
     }
 }

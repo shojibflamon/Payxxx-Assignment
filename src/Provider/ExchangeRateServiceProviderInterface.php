@@ -2,12 +2,14 @@
 
 namespace Shojibflamon\PayseraAssignment\Provider;
 
-
 use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
 
 interface ExchangeRateServiceProviderInterface
 {
-
-    public function getExchangeRate(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency) : ExchangeRateServiceResponse;
-
+    /**
+     * @param CurrencyInterface $sourceCurrency
+     * @param CurrencyInterface $targetCurrency
+     * @return ExchangeRateServiceResponse
+     */
+    public function getExchangeRate(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency): ExchangeRateServiceResponse;
 }

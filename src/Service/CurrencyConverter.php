@@ -7,8 +7,14 @@ use Shojibflamon\PayseraAssignment\Provider\ExchangeRateServiceResponse;
 
 class CurrencyConverter implements CurrencyConverterInterface
 {
+    /**
+     * @var array
+     */
     private array $exchangeRates = [];
 
+    /**
+     * @param ExchangeRateServiceResponse ...$exchangeRates
+     */
     public function __construct(ExchangeRateServiceResponse ...$exchangeRates)
     {
         foreach ($exchangeRates as $exchangeRate) {
@@ -16,6 +22,10 @@ class CurrencyConverter implements CurrencyConverterInterface
         }
     }
 
+    /**
+     * @param ExchangeRateServiceResponse $exchangeRate
+     * @return void
+     */
     private function registerExchangeRate(ExchangeRateServiceResponse $exchangeRate): void
     {
         $source = $exchangeRate->getSourceCurrency()->getCode();
@@ -29,16 +39,32 @@ class CurrencyConverter implements CurrencyConverterInterface
         }
     }
 
+    /**
+     * @param string $sourceCurrencyCode
+     * @param string $targetCurrencyCode
+     * @return float|null
+     */
     private function getExchangeRate(string $sourceCurrencyCode, string $targetCurrencyCode): ?float
     {
         return $this->exchangeRates[$sourceCurrencyCode][$targetCurrencyCode] ?? NULL;
     }
 
+    /**
+     * @param string $sourceCurrencyCode
+     * @param string $targetCurrencyCode
+     * @return bool
+     */
     private function hasExchangeRate(string $sourceCurrencyCode, string $targetCurrencyCode): bool
     {
         return isset($this->exchangeRates[$sourceCurrencyCode][$targetCurrencyCode]);
     }
 
+    /**
+     * @param float $amount
+     * @param CurrencyInterface $sourceCurrency
+     * @param CurrencyInterface $targetCurrency
+     * @return float
+     */
     public function convert(float $amount, CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency): float
     {
         $ratio = $this->getExchangeRate($sourceCurrency->getCode(), $targetCurrency->getCode());

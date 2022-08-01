@@ -4,7 +4,7 @@ namespace Shojibflamon\PayseraAssignment\Provider;
 
 use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
 
-Class ExchangeRateServiceResponse implements ExchangeRateServiceResponseInterface
+class ExchangeRateServiceResponse implements ExchangeRateServiceResponseInterface
 {
 
     /**
@@ -22,6 +22,11 @@ Class ExchangeRateServiceResponse implements ExchangeRateServiceResponseInterfac
      */
     private float $ratio;
 
+    /**
+     * @param CurrencyInterface $sourceCurrency
+     * @param CurrencyInterface $targetCurrency
+     * @param float $ratio
+     */
     public function __construct(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency, float $ratio)
     {
         $this->sourceCurrency = $sourceCurrency;
@@ -52,6 +57,4 @@ Class ExchangeRateServiceResponse implements ExchangeRateServiceResponseInterfac
     {
         return $this->ratio;
     }
-
-
 }

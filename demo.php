@@ -6,15 +6,15 @@ include_once 'start.php';
 
 use Shojibflamon\PayseraAssignment\Calculation\CalculateCommission;
 use Shojibflamon\PayseraAssignment\Helper\Dump;
+use Shojibflamon\PayseraAssignment\Service\CsvFile;
 use Shojibflamon\PayseraAssignment\Service\CsvFileProcess;
 
 $file = 'input.csv';
-$processFile = new CsvFileProcess($file);
-Dump::dd($processFile);
-$transaction = $processFile->convertObject();
-Dump::ddd($transaction);
-$calculateCommission = new CalculateCommission($transaction);
-//Dump::dd($calculateCommission);
+
+$csv = new CsvFile($file);
+$transactions = $csv->getData();
+$processFile = new CsvFileProcess($transactions);
+$transactionFactory = $processFile->parseStringFromCsv()->transformation();
+$calculateCommission = new CalculateCommission($transactionFactory);
 $fees = $calculateCommission->process();
 Dump::ddd($fees);
-

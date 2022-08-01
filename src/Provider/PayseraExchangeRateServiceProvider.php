@@ -10,10 +10,25 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
 {
     const PAYSERA_EXCHAGNE_RATE_API = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
 
+    /**
+     * @var CurlClient|ClientInterface
+     */
+
     private CurlClient $client;
+    /**
+     * @var string|false
+     */
+
     private string $date;
+    /**
+     * @var string
+     */
+
     private string $exchangeRateSource;
 
+    /**
+     * @param ClientInterface|NULL $client
+     */
     public function __construct(ClientInterface $client = NULL)
     {
         $this->client = $client ?? new CurlClient();
@@ -30,9 +45,13 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
         return $this;
     }
 
+    /**
+     * @param CurrencyInterface $sourceCurrency
+     * @param CurrencyInterface $targetCurrency
+     * @return ExchangeRateServiceResponse
+     */
     public function getExchangeRate(CurrencyInterface $sourceCurrency, CurrencyInterface $targetCurrency): ExchangeRateServiceResponse
     {
-
         // SAME CURRENCY
         if ($sourceCurrency->getCode() === $targetCurrency->getCode()) {
             return new ExchangeRateServiceResponse($sourceCurrency, $targetCurrency, 1);
@@ -49,7 +68,7 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
             $exchangeRateResponse = $this->client->setUrl(self::PAYSERA_EXCHAGNE_RATE_API)->setMethod('GET')->callApi()->getResponseDecode(true);
         } elseif ($this->exchangeRateSource === 'static') {
             $exchangeRateResponse = $this->getExchangeRateStatic();
-        }else{
+        } else {
             throw new \RuntimeException("Unexpected ExchangeRate Source $this->exchangeRateSource");
         }
 
@@ -61,6 +80,9 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
 
     }
 
+    /**
+     * @return array
+     */
     public function getExchangeRateStatic(): array
     {
         return [
