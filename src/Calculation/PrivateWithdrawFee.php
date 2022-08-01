@@ -5,7 +5,7 @@ namespace Shojibflamon\PayseraAssignment\Calculation;
 use Shojibflamon\PayseraAssignment\Helper\Dump;
 use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
 
-class PrivateWithdrawFee implements CommissionFeeInterface
+class PrivateWithdrawFee extends AbstractCommissionFee
 {
     use Dump;
 

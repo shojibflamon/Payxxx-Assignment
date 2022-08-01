@@ -10,7 +10,10 @@ use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
 class CurrencyTest extends TestCase
 {
 
-/*    public function testExchangeRateStatic()
+    /**
+     * @return void
+     */
+    public function testExchangeRateStatic(): void
     {
         $EUR = new Currency('EUR');
         $USD = new Currency('USD');
@@ -22,7 +25,10 @@ class CurrencyTest extends TestCase
         $this->assertEquals(2 * (1 / 1.1497), $currencyConverter->convert(2, $USD, $EUR));
     }
 
-    public function testExchangeRateLive()
+    /**
+     * @return void
+     */
+    public function testExchangeRateLive(): void
     {
         $EUR = new Currency('EUR');
         $USD = new Currency('USD');
@@ -34,7 +40,10 @@ class CurrencyTest extends TestCase
         $this->assertEquals(2 * (1 / 1.129031), $currencyConverter->convert(2, $USD, $EUR));
     }
 
-    public function testExchangeRateSameCurrency()
+    /**
+     * @return void
+     */
+    public function testExchangeRateSameCurrency(): void
     {
         $EUR = new Currency('EUR');
         $exchangeRateProvider = new PayseraExchangeRateServiceProvider();
@@ -42,7 +51,7 @@ class CurrencyTest extends TestCase
         $currencyConverter = new CurrencyConverter($exchangeRate);
 
         $this->assertEquals(2 * 1, $currencyConverter->convert(2, $EUR, $EUR));
-        $this->assertEquals(2 * (1/1), $currencyConverter->convert(2, $EUR, $EUR));
+        $this->assertEquals(2 * (1 / 1), $currencyConverter->convert(2, $EUR, $EUR));
     }
-    */
+
 }
