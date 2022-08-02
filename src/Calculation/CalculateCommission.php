@@ -1,11 +1,11 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Calculation;
+namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayseraAssignment\Helper\Dump;
-use Shojibflamon\PayseraAssignment\Model\OperationType;
-use Shojibflamon\PayseraAssignment\Model\User;
-use Shojibflamon\PayseraAssignment\Service\TransactionFactoryInterface;
+use Shojibflamon\PayxxxxAssignment\Helper\Dump;
+use Shojibflamon\PayxxxxAssignment\Model\OperationType;
+use Shojibflamon\PayxxxxAssignment\Model\User;
+use Shojibflamon\PayxxxxAssignment\Service\TransactionFactoryInterface;
 
 class CalculateCommission implements CalculateCommissionInterface
 {

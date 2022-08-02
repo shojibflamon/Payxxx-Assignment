@@ -4,10 +4,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once 'start.php';
 
-use Shojibflamon\PayseraAssignment\Calculation\CalculateCommission;
-use Shojibflamon\PayseraAssignment\Helper\Dump;
-use Shojibflamon\PayseraAssignment\Service\CsvFile;
-use Shojibflamon\PayseraAssignment\Service\CsvFileProcess;
+use Shojibflamon\PayxxxxAssignment\Calculation\CalculateCommission;
+use Shojibflamon\PayxxxxAssignment\Helper\Dump;
+use Shojibflamon\PayxxxxAssignment\Service\CsvFile;
+use Shojibflamon\PayxxxxAssignment\Service\CsvFileProcess;
 
 $file = 'input.csv';
 

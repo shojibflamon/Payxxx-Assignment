@@ -4,14 +4,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once 'start.php';
 
-use Shojibflamon\PayseraAssignment\Helper\Dump;
-use Shojibflamon\PayseraAssignment\Model\Currency;
-use Shojibflamon\PayseraAssignment\Provider\PayseraExchangeRateServiceProvider;
-use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
+use Shojibflamon\PayxxxxAssignment\Helper\Dump;
+use Shojibflamon\PayxxxxAssignment\Model\Currency;
+use Shojibflamon\PayxxxxAssignment\Provider\PayxxxxExchangeRateServiceProvider;
+use Shojibflamon\PayxxxxAssignment\Service\CurrencyConverter;
 
 $EUR = new Currency('EUR');
 $USD = new Currency('USD');
-$exchangeRateProvider = new PayseraExchangeRateServiceProvider();
+$exchangeRateProvider = new PayxxxxExchangeRateServiceProvider();
 
 // STATIC EXCHANGE RATE
 $exchangeRate = $exchangeRateProvider->setExchangeRateSource('static')->getExchangeRate($EUR, $USD);

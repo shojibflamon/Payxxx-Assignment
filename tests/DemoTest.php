@@ -3,10 +3,10 @@
 namespace Shojibflamon\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Shojibflamon\PayseraAssignment\Calculation\CalculateCommission;
-use Shojibflamon\PayseraAssignment\Service\CsvFile;
-use Shojibflamon\PayseraAssignment\Service\CsvFileProcess;
-use Shojibflamon\PayseraAssignment\Service\FileData;
+use Shojibflamon\PayxxxxAssignment\Calculation\CalculateCommission;
+use Shojibflamon\PayxxxxAssignment\Service\CsvFile;
+use Shojibflamon\PayxxxxAssignment\Service\CsvFileProcess;
+use Shojibflamon\PayxxxxAssignment\Service\FileData;
 
 class DemoTest extends TestCase
 {

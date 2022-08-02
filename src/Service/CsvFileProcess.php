@@ -1,13 +1,13 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Service;
+namespace Shojibflamon\PayxxxxAssignment\Service;
 
-use Shojibflamon\PayseraAssignment\Model\Transaction;
-use Shojibflamon\PayseraAssignment\Helper\Dump;
-use Shojibflamon\PayseraAssignment\Model\Amount;
-use Shojibflamon\PayseraAssignment\Model\DateOperation;
-use Shojibflamon\PayseraAssignment\Model\OperationType;
-use Shojibflamon\PayseraAssignment\Model\User;
+use Shojibflamon\PayxxxxAssignment\Model\Transaction;
+use Shojibflamon\PayxxxxAssignment\Helper\Dump;
+use Shojibflamon\PayxxxxAssignment\Model\Amount;
+use Shojibflamon\PayxxxxAssignment\Model\DateOperation;
+use Shojibflamon\PayxxxxAssignment\Model\OperationType;
+use Shojibflamon\PayxxxxAssignment\Model\User;
 
 class CsvFileProcess implements FileProcessInterface
 {

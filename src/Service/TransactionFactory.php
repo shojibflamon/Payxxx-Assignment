@@ -1,8 +1,8 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Service;
+namespace Shojibflamon\PayxxxxAssignment\Service;
 
-use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
+use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 class TransactionFactory implements TransactionFactoryInterface
 {

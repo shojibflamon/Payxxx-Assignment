@@ -1,9 +1,9 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Calculation;
+namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayseraAssignment\Helper\Dump;
-use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
+use Shojibflamon\PayxxxxAssignment\Helper\Dump;
+use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 class DepositFee extends AbstractCommissionFee
 {

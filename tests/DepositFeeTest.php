@@ -3,12 +3,12 @@
 namespace Shojibflamon\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Shojibflamon\PayseraAssignment\Calculation\DepositFee;
-use Shojibflamon\PayseraAssignment\Model\Amount;
-use Shojibflamon\PayseraAssignment\Model\DateOperation;
-use Shojibflamon\PayseraAssignment\Model\OperationType;
-use Shojibflamon\PayseraAssignment\Model\Transaction;
-use Shojibflamon\PayseraAssignment\Model\User;
+use Shojibflamon\PayxxxxAssignment\Calculation\DepositFee;
+use Shojibflamon\PayxxxxAssignment\Model\Amount;
+use Shojibflamon\PayxxxxAssignment\Model\DateOperation;
+use Shojibflamon\PayxxxxAssignment\Model\OperationType;
+use Shojibflamon\PayxxxxAssignment\Model\Transaction;
+use Shojibflamon\PayxxxxAssignment\Model\User;
 
 class DepositFeeTest extends TestCase
 {

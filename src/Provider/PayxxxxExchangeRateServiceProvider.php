@@ -1,14 +1,14 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Provider;
+namespace Shojibflamon\PayxxxxAssignment\Provider;
 
-use Shojibflamon\PayseraAssignment\Client\ClientInterface;
-use Shojibflamon\PayseraAssignment\Client\CurlClient;
-use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
+use Shojibflamon\PayxxxxAssignment\Client\ClientInterface;
+use Shojibflamon\PayxxxxAssignment\Client\CurlClient;
+use Shojibflamon\PayxxxxAssignment\Model\CurrencyInterface;
 
-class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderInterface
+class PayxxxxExchangeRateServiceProvider implements ExchangeRateServiceProviderInterface
 {
-    const PAYSERA_EXCHAGNE_RATE_API = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
+    const PAYXXXX_EXCHAGNE_RATE_API = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
 
     /**
      * @var CurlClient|ClientInterface
@@ -39,7 +39,7 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
     /**
      * @param mixed $exchangeRateSource
      */
-    public function setExchangeRateSource($exchangeRateSource): PayseraExchangeRateServiceProvider
+    public function setExchangeRateSource($exchangeRateSource): PayxxxxExchangeRateServiceProvider
     {
         $this->exchangeRateSource = $exchangeRateSource;
         return $this;
@@ -65,7 +65,7 @@ class PayseraExchangeRateServiceProvider implements ExchangeRateServiceProviderI
 
         // EXCHANGE RATE SOURCE
         if ($this->exchangeRateSource === 'live') {
-            $exchangeRateResponse = $this->client->setUrl(self::PAYSERA_EXCHAGNE_RATE_API)->setMethod('GET')->callApi()->getResponseDecode(true);
+            $exchangeRateResponse = $this->client->setUrl(self::PAYXXXX_EXCHAGNE_RATE_API)->setMethod('GET')->callApi()->getResponseDecode(true);
         } elseif ($this->exchangeRateSource === 'static') {
             $exchangeRateResponse = $this->getExchangeRateStatic();
         } else {

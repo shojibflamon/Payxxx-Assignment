@@ -1,8 +1,8 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Provider;
+namespace Shojibflamon\PayxxxxAssignment\Provider;
 
-use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
+use Shojibflamon\PayxxxxAssignment\Model\CurrencyInterface;
 
 class ExchangeRateServiceResponse implements ExchangeRateServiceResponseInterface
 {

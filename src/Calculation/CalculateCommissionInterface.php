@@ -1,6 +1,6 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Calculation;
+namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
 interface CalculateCommissionInterface
 {

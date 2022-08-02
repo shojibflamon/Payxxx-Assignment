@@ -1,8 +1,8 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Calculation;
+namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayseraAssignment\Model\TransactionInterface;
+use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 abstract class AbstractCommissionFee
 {

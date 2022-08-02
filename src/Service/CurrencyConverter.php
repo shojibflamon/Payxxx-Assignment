@@ -1,9 +1,9 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Service;
+namespace Shojibflamon\PayxxxxAssignment\Service;
 
-use Shojibflamon\PayseraAssignment\Model\CurrencyInterface;
-use Shojibflamon\PayseraAssignment\Provider\ExchangeRateServiceResponse;
+use Shojibflamon\PayxxxxAssignment\Model\CurrencyInterface;
+use Shojibflamon\PayxxxxAssignment\Provider\ExchangeRateServiceResponse;
 
 class CurrencyConverter implements CurrencyConverterInterface
 {

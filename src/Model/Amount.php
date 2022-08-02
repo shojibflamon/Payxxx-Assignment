@@ -1,9 +1,9 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Model;
+namespace Shojibflamon\PayxxxxAssignment\Model;
 
-use Shojibflamon\PayseraAssignment\Provider\PayseraExchangeRateServiceProvider;
-use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
+use Shojibflamon\PayxxxxAssignment\Provider\PayxxxxExchangeRateServiceProvider;
+use Shojibflamon\PayxxxxAssignment\Service\CurrencyConverter;
 
 class Amount
 {
@@ -84,7 +84,7 @@ class Amount
      */
     public function getExchangeRate(): void
     {
-        $this->exchangeRate = (new PayseraExchangeRateServiceProvider())
+        $this->exchangeRate = (new PayxxxxExchangeRateServiceProvider())
             ->setExchangeRateSource($this->exchangeRateSource)
             ->getExchangeRate($this->operationCurrency, $this->baseCurrency);
     }

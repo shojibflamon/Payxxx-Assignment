@@ -1,6 +1,6 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Client;
+namespace Shojibflamon\PayxxxxAssignment\Client;
 
 class CurlClient implements ClientInterface
 {

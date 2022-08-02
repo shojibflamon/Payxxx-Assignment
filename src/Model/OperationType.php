@@ -1,6 +1,6 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Model;
+namespace Shojibflamon\PayxxxxAssignment\Model;
 
 class OperationType
 {

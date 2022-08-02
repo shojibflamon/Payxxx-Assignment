@@ -1,10 +1,10 @@
 {
-    "name": "shojibflamon/paysera-assignment",
-    "description": "Paysera Assignment - PHP",
+    "name": "shojibflamon/payxxxx-assignment",
+    "description": "Payxxxx Assignment - PHP",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Shojibflamon\\PayseraAssignment\\": "src/"
+            "Shojibflamon\\PayxxxxAssignment\\": "src/"
         }
     },
     "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Service;
+namespace Shojibflamon\PayxxxxAssignment\Service;
 
 class CsvFile implements FileInterface
 {

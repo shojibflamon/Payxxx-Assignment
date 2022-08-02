@@ -1,6 +1,6 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Provider;
+namespace Shojibflamon\PayxxxxAssignment\Provider;
 
 interface ExchangeRateServiceResponseInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shojibflamon\PayseraAssignment\Helper;
+namespace Shojibflamon\PayxxxxAssignment\Helper;
 
 trait Dump
 {

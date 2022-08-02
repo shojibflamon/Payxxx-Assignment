@@ -3,9 +3,9 @@
 namespace Shojibflamon\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Shojibflamon\PayseraAssignment\Model\Currency;
-use Shojibflamon\PayseraAssignment\Provider\PayseraExchangeRateServiceProvider;
-use Shojibflamon\PayseraAssignment\Service\CurrencyConverter;
+use Shojibflamon\PayxxxxAssignment\Model\Currency;
+use Shojibflamon\PayxxxxAssignment\Provider\PayxxxxExchangeRateServiceProvider;
+use Shojibflamon\PayxxxxAssignment\Service\CurrencyConverter;
 
 class CurrencyTest extends TestCase
 {
@@ -17,7 +17,7 @@ class CurrencyTest extends TestCase
     {
         $EUR = new Currency('EUR');
         $USD = new Currency('USD');
-        $exchangeRateProvider = new PayseraExchangeRateServiceProvider();
+        $exchangeRateProvider = new PayxxxxExchangeRateServiceProvider();
         $exchangeRate = $exchangeRateProvider->setExchangeRateSource('static')->getExchangeRate($EUR, $USD);
         $currencyConverter = new CurrencyConverter($exchangeRate);
 
@@ -32,7 +32,7 @@ class CurrencyTest extends TestCase
     {
         $EUR = new Currency('EUR');
         $USD = new Currency('USD');
-        $exchangeRateProvider = new PayseraExchangeRateServiceProvider();
+        $exchangeRateProvider = new PayxxxxExchangeRateServiceProvider();
         $exchangeRate = $exchangeRateProvider->setExchangeRateSource('live')->getExchangeRate($EUR, $USD);
         $currencyConverter = new CurrencyConverter($exchangeRate);
 
@@ -46,7 +46,7 @@ class CurrencyTest extends TestCase
     public function testExchangeRateSameCurrency(): void
     {
         $EUR = new Currency('EUR');
-        $exchangeRateProvider = new PayseraExchangeRateServiceProvider();
+        $exchangeRateProvider = new PayxxxxExchangeRateServiceProvider();
         $exchangeRate = $exchangeRateProvider->setExchangeRateSource('live')->getExchangeRate($EUR, $EUR);
         $currencyConverter = new CurrencyConverter($exchangeRate);
 
