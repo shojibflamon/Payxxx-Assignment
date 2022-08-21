@@ -43,14 +43,14 @@ class CalculateCommission implements CalculateCommissionInterface
 
 
     /**
-     * @param TransactionFactoryInterface $fileProcess
+     * @param TransactionFactoryInterface $transactionFactory
      */
-    public function __construct(TransactionFactoryInterface $fileProcess)
+    public function __construct(TransactionFactoryInterface $transactionFactory)
     {
         $this->commissionFee = 0;
 
         $this->commissionFees = [];
-        $this->transactions = $fileProcess->getTransactions();
+        $this->transactions = $transactionFactory->getTransactions();
         $this->depositFee = new DepositFee();
         $this->businessWithdrawFee = new BusinessWithdrawFee();
         $this->privateWithdrawFee = new PrivateWithdrawFee();
