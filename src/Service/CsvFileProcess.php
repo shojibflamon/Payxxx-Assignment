@@ -49,11 +49,7 @@ class CsvFileProcess implements FileProcessInterface
     public function transformation(): TransactionFactory
     {
         $transactionFactory = new TransactionFactory();
-        foreach ($this->transactions as $key => $single) {
-
-//            if ($key != 0){
-//                continue;
-//            }
+        foreach ($this->transactions as $single) {
 
             $date = $this->bindDate($single[0]);
             $user = $this->bindUser($single[1], $single[2]);

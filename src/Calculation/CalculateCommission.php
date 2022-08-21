@@ -67,12 +67,8 @@ class CalculateCommission implements CalculateCommissionInterface
      */
     public function process(): array
     {
-        foreach ($this->transactions as $key => $transaction) {
+        foreach ($this->transactions as $transaction) {
 
-            /*if ($key != 0) {
-                continue;
-            }
-            */
             if ($this->isDepositAction($transaction)) {
                 $this->commissionFee = $this->depositFee->calculate($transaction);
             }
