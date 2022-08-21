@@ -1,29 +1,37 @@
-# README #
+# Recruitment Assignment PHP
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# Installation
+Clone this repo. Go to this repo directory in terminal and run this command
 
-### What is this repository for? ###
+```shell
+composer install
+```
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Wait for few minutes. Composer will automatically install this package for your project.
 
-### How do I get set up? ###
+# Run (Commission Fee)
+After installing go to your terminal & run this command. This command will get you the final commission fee depending on exchange rate.
+There are two exchange rate implemented. One is given static and another one is live (https://developers.----.com/tasks/api/currency-exchange-rates)
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+To change the exchange rate static to live ot vice versa follow the instruction.
 
-### Contribution guidelines ###
+```shell
+Go src/Model>Amount.php and change the value of EXCHANGE_RATE_API_SOURCE = live|static
+```
 
-* Writing tests
-* Code review
-* Other guidelines
+```shell
+php demo.php input.csv
+```
 
-### Who do I talk to? ###
+# Run (Exchange Currency)
+To check currency exchange rate with static or live go to terminal & run this command
 
-* Repo owner or admin
-* Other community or team contact
+```shell
+php currency.php
+```
+
+# Unit Test
+Go to your terminal & run this command. This command will run a sample currency conversation test.
+```shell
+vendor/bin/phpunit
+```
