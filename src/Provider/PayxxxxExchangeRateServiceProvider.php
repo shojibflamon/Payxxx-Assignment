@@ -8,7 +8,7 @@ use Shojibflamon\PayxxxxAssignment\Model\CurrencyInterface;
 
 class PayxxxxExchangeRateServiceProvider implements ExchangeRateServiceProviderInterface
 {
-    const PAYXXXX_EXCHAGNE_RATE_API = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
+    public const PAYXXXX_EXCHAGNE_RATE_API = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
 
     /**
      * @var CurlClient|ClientInterface

@@ -16,5 +16,7 @@ $transactions = $csv->getData();
 $processFile = new CsvFileProcess($transactions);
 $transactionFactory = $processFile->parseStringFromCsv()->transformation();
 $calculateCommission = new CalculateCommission($transactionFactory);
-$fees = $calculateCommission->process();
-Dump::ddd($fees);
+
+foreach ($calculateCommission->process() as $fee){
+    echo $fee . PHP_EOL;
+}
