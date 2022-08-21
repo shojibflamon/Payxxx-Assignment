@@ -2,13 +2,10 @@
 
 namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 class DepositFee extends AbstractCommissionFee
 {
-    use Dump;
-
     public const OPERATION_TYPE_DEPOSIT_RATE = 0.03;
 
     /**

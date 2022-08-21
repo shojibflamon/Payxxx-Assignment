@@ -3,7 +3,6 @@
 namespace Shojibflamon\PayxxxxAssignment\Service;
 
 use Shojibflamon\PayxxxxAssignment\Model\Transaction;
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\Amount;
 use Shojibflamon\PayxxxxAssignment\Model\DateOperation;
 use Shojibflamon\PayxxxxAssignment\Model\OperationType;
@@ -11,9 +10,6 @@ use Shojibflamon\PayxxxxAssignment\Model\User;
 
 class CsvFileProcess implements FileProcessInterface
 {
-
-    use Dump;
-
     /**
      * @var array
      */

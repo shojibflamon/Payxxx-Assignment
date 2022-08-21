@@ -2,12 +2,10 @@
 
 namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 class BusinessWithdrawFee extends AbstractCommissionFee
 {
-    use Dump;
 
     public const OPERATION_TYPE_BUSINESS_WITHDRAW_RATE = 0.5;
 

@@ -2,14 +2,12 @@
 
 namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\OperationType;
 use Shojibflamon\PayxxxxAssignment\Model\User;
 use Shojibflamon\PayxxxxAssignment\Service\TransactionFactoryInterface;
 
 class CalculateCommission implements CalculateCommissionInterface
 {
-    use Dump;
 
     /**
      * @var array

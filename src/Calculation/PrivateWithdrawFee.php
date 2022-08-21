@@ -2,13 +2,10 @@
 
 namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 class PrivateWithdrawFee extends AbstractCommissionFee
 {
-    use Dump;
-
     public const OPERATION_TYPE_PRIVATE_WITHDRAW_RATE = 0.3;
 
     public const WITHDRAW_LIMIT_IN_WEEK = 3;
