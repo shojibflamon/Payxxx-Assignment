@@ -18,9 +18,9 @@ class FileData
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
