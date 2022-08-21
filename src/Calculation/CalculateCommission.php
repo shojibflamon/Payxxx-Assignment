@@ -2,14 +2,14 @@
 
 namespace Shojibflamon\PayxxxxAssignment\Calculation;
 
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\OperationType;
 use Shojibflamon\PayxxxxAssignment\Model\User;
 use Shojibflamon\PayxxxxAssignment\Service\TransactionFactoryInterface;
 
 class CalculateCommission implements CalculateCommissionInterface
 {
-    use Dump;
+
+    public CONST PRECISION = 2;
 
     /**
      * @var array
@@ -41,11 +41,6 @@ class CalculateCommission implements CalculateCommissionInterface
      */
     private PrivateWithdrawFee $privateWithdrawFee;
 
-    /**
-     * @var int
-     */
-    private int $precision;
-
 
     /**
      * @param TransactionFactoryInterface $fileProcess
@@ -53,7 +48,6 @@ class CalculateCommission implements CalculateCommissionInterface
     public function __construct(TransactionFactoryInterface $fileProcess)
     {
         $this->commissionFee = 0;
-        $this->precision = 2;
 
         $this->commissionFees = [];
         $this->transactions = $fileProcess->getTransactions();
@@ -67,12 +61,8 @@ class CalculateCommission implements CalculateCommissionInterface
      */
     public function process(): array
     {
-        foreach ($this->transactions as $key => $transaction) {
+        foreach ($this->transactions as $transaction) {
 
-            /*if ($key != 0) {
-                continue;
-            }
-            */
             if ($this->isDepositAction($transaction)) {
                 $this->commissionFee = $this->depositFee->calculate($transaction);
             }
@@ -85,13 +75,13 @@ class CalculateCommission implements CalculateCommissionInterface
                 $this->commissionFee = $this->privateWithdrawFee->calculate($transaction);
             }
 
-            $this->precision = 2;
+            $precision = self::PRECISION;
 
             if ($transaction->getAmount()->getOperationCurrency()->getCode() === 'JPY') {
-                $this->precision = 0;
+                $precision = 0;
             }
 
-            $this->commissionFee = $transaction->getAmount()->ceiling($this->commissionFee, $this->precision);
+            $this->commissionFee = $transaction->getAmount()->ceiling($this->commissionFee, $precision);
 
             $this->commissionFees[] = $this->commissionFee;
 

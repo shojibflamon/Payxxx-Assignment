@@ -3,7 +3,6 @@
 namespace Shojibflamon\PayxxxxAssignment\Service;
 
 use Shojibflamon\PayxxxxAssignment\Model\Transaction;
-use Shojibflamon\PayxxxxAssignment\Helper\Dump;
 use Shojibflamon\PayxxxxAssignment\Model\Amount;
 use Shojibflamon\PayxxxxAssignment\Model\DateOperation;
 use Shojibflamon\PayxxxxAssignment\Model\OperationType;
@@ -11,9 +10,6 @@ use Shojibflamon\PayxxxxAssignment\Model\User;
 
 class CsvFileProcess implements FileProcessInterface
 {
-
-    use Dump;
-
     /**
      * @var array
      */
@@ -49,11 +45,7 @@ class CsvFileProcess implements FileProcessInterface
     public function transformation(): TransactionFactory
     {
         $transactionFactory = new TransactionFactory();
-        foreach ($this->transactions as $key => $single) {
-
-//            if ($key != 0){
-//                continue;
-//            }
+        foreach ($this->transactions as $single) {
 
             $date = $this->bindDate($single[0]);
             $user = $this->bindUser($single[1], $single[2]);

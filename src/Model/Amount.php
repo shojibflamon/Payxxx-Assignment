@@ -30,7 +30,7 @@ class Amount
     private $exchangeRate;
 
     /**
-     * @var
+     * @var string
      */
     private string $exchangeRateSource;
 
