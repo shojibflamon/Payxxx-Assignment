@@ -42,11 +42,7 @@ class PrivateWithdrawFee extends AbstractCommissionFee
     {
         $this->resetCredentials();
 
-        $operationAmount = $transaction->getAmount()->getAmount();
-        $operationCurrency = $transaction->getAmount()->getOperationCurrency();
-        $baseCurrency = $transaction->getAmount()->getBaseCurrency();
-
-        $amountInEuro = $transaction->getAmount()->getCurrencyConverter()->convert($operationAmount, $operationCurrency, $baseCurrency);
+        $amountInEuro = $this->getAmountInEur($transaction);
 
         $weekStartDate = $transaction->getDateOperation()->getFirstDayOfWeek();
 
@@ -76,7 +72,7 @@ class PrivateWithdrawFee extends AbstractCommissionFee
         ];
 
         if ($transaction->getAmount()->getOperationCurrency()->getCode() !== 'EUR') {
-            $commissionableAmount = $transaction->getAmount()->getCurrencyConverter()->convert($commissionableAmount, $baseCurrency, $operationCurrency);
+            $commissionableAmount = $transaction->getAmount()->getCurrencyConverter()->convert($commissionableAmount, $this->baseCurrency, $this->operationCurrency);
         }
 
         return $commissionableAmount * self::OPERATION_TYPE_PRIVATE_WITHDRAW_RATE * .01;

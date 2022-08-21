@@ -6,7 +6,6 @@ use Shojibflamon\PayxxxxAssignment\Model\TransactionInterface;
 
 class BusinessWithdrawFee extends AbstractCommissionFee
 {
-
     public const OPERATION_TYPE_BUSINESS_WITHDRAW_RATE = 0.5;
 
     /**
@@ -15,12 +14,6 @@ class BusinessWithdrawFee extends AbstractCommissionFee
      */
     public function calculate(TransactionInterface $transaction): float
     {
-        $operationAmount = $transaction->getAmount()->getAmount();
-        $operationCurrency = $transaction->getAmount()->getOperationCurrency();
-        $baseCurrency = $transaction->getAmount()->getBaseCurrency();
-
-        $amountInEuro = $transaction->getAmount()->getCurrencyConverter()->convert($operationAmount, $operationCurrency, $baseCurrency);
-
-        return $amountInEuro * self::OPERATION_TYPE_BUSINESS_WITHDRAW_RATE * .01;
+        return $this->getAmountInEur($transaction) * self::OPERATION_TYPE_BUSINESS_WITHDRAW_RATE * .01;
     }
 }
